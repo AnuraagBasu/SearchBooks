@@ -1,0 +1,27 @@
+{
+  "name": "searchbooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "dev": "parcel public/index.html",
+    "build": "parcel build public/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnuraagBasu/SearchBooks.git"
+  },
+  "author": "Anuraag Basu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnuraagBasu/SearchBooks/issues"
+  },
+  "homepage": "https://github.com/AnuraagBasu/SearchBooks#readme"
+}
