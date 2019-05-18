@@ -1,5 +1,5 @@
-const element = document.createElement("div");
-element.innerHTML = "Just beginning...";
+import SearchCarousel from "./components/SearchCarousel";
 
 const root = document.getElementById("root");
-root && root.appendChild(element);
+const searchCarousel = new SearchCarousel();
+root && root.appendChild(searchCarousel);
