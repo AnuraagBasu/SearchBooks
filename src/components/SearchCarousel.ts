@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar";
+import SearchBarWithVoice from "./SearchBarWithVoice";
 import Carousel from "./Carousel";
 
 import { searchBooks } from "../utils";
@@ -32,7 +32,7 @@ class SearchCarousel extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.searchBar = new SearchBar();
+    this.searchBar = new SearchBarWithVoice();
     shadowRoot.appendChild(this.searchBar);
     this.carousel = new Carousel();
     shadowRoot.appendChild(this.carousel);
