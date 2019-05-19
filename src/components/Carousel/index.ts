@@ -1,4 +1,4 @@
-import BookCover from "./BookCover";
+import BookCover from "../BookCover";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -11,8 +11,13 @@ template.innerHTML = `
       white-space: nowrap;
       max-width: 600px;
       margin: 0 auto;
-      overflow: scroll;
-    }
+	  overflow: scroll;
+	  transition: all .3s ease;
+	}
+	:host .slide {
+		padding: 8px;
+		display: inline-block;
+	}
   </style>
   <div class="slider"></div>
 `;
@@ -21,7 +26,7 @@ class Carousel extends HTMLElement {
   constructor() {
     super();
 
-    this.items = [];
+    this.slides = [];
 
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(template.content.cloneNode(true));
@@ -29,30 +34,26 @@ class Carousel extends HTMLElement {
     this.slider = shadowRoot.querySelector(".slider");
   }
 
-  get items() {
-    return this.items;
+  get slides() {
+    return this.slides;
   }
-  set items(val: Array) {
-    // this.items = val;
+  set slides(val: Array) {
+    // this.slides = val;
     this.addSlides(val);
   }
 
-  attributeChangedCallback(name: string, oldVal: Array, newVal: Array) {
-    switch (name) {
-      case "items":
-        this.addSlides(newVal);
-        return;
-      default:
-        return;
-    }
-  }
-
-  addSlides = (slides: Array = []) => {
+  addSlides = (slides: Array) => {
     slides.forEach((book: Object) => {
+      const slide = document.createElement("div");
+      slide.classList.add("slide");
+
       const cover = new BookCover();
       cover.setAttribute("is", "book-cover");
+      cover.classList.add("slide");
       cover.coverKey = book.cover_edition_key;
-      this.slider.appendChild(cover);
+
+      slide.appendChild(cover);
+      this.slider.appendChild(slide);
     });
   };
 }

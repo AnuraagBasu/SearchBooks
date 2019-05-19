@@ -45,7 +45,7 @@ class SearchCarousel extends HTMLElement {
 
   requestItems = (query: string) => {
     searchBooks(query).then((resp) => {
-      this.carousel.items = resp.docs || [];
+      this.carousel.slides = resp.docs || [];
     });
   };
 }

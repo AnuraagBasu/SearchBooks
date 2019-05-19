@@ -3,7 +3,7 @@ template.innerHTML = `
 	<style>
 		:host {
 			display: inline-block;
-			width: 150px;
+			width: 200px;
 			height: 200px;
 			background-size: contain;
 			background-position: center;

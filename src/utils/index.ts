@@ -27,7 +27,7 @@ export const listenToSpeech = () => {
 
     recognition.onresult = (event: any) => {
       const speech = event.results[0][0].transcript;
-      if (speech.toLowerCase().indexOf("search for") != -1) {
+      if (speech.toLowerCase().indexOf(recogniserText) != -1) {
         resolve(speech.substring(recogniserText.length, speech.length - 1));
       }
     };
