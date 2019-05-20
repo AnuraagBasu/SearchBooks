@@ -34,18 +34,32 @@ class SearchCarousel extends HTMLElement {
 
     this.searchBar = new SearchBarWithVoice();
     shadowRoot.appendChild(this.searchBar);
+    this.searchBar.value = "Watson";
     this.carousel = new Carousel();
     shadowRoot.appendChild(this.carousel);
+
+    this.pagination = {
+      count: 0,
+      next: null
+    };
   }
 
   connectedCallback() {
-    this.requestItems("watson");
+    this.requestItems(this.searchBar.value);
     this.searchBar.addEventListener("onSearch", (e: any) => this.requestItems(e.detail));
+    this.carousel.addEventListener("onFetchMore", (e: any) => this.fetchNextPageItems());
   }
 
   requestItems = (query: string) => {
     searchBooks(query).then((resp) => {
-      this.carousel.slides = resp.docs || [];
+      const allSlides = resp.docs || [];
+      this.carousel.slides = allSlides;
+      this.carousel.activeSlideIndex = 0;
+    });
+  };
+  fetchNextPageItems = () => {
+    searchBooks(this.searchBar.value).then((resp) => {
+      this.carousel.slides = [...this.carousel.slides, ...resp.docs];
     });
   };
 }
