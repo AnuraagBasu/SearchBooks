@@ -7,13 +7,13 @@ template.innerHTML = `
 			width: 40px;
 			height: 40px;
 			border-radius: 50%;
-			background-color: #eee;
 			padding: 4px;
-			display: flex;
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
 			transition: all .3s ease;
+			display: flex;
+			transform: translateX(-40px);
 		}
 		:host > .voiceInputBtn.listening{
 			background-color: #ef9a9a;
@@ -25,7 +25,7 @@ template.innerHTML = `
 		}
 	</style>
 	<div class="voiceInputBtn">
-		<img src="https://banner2.kisspng.com/20180516/eke/kisspng-computer-icons-microphone-icon-design-5afc336bb79b23.8411474615264776757521.jpg" />
+		<img src="https://images.vexels.com/media/users/3/132136/isolated/preview/96a71143337a3ad5576f9d0d2aa9787e-singing-microphone-icon-by-vexels.png" />
 	</div>
 `;
 

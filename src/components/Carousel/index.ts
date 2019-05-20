@@ -4,11 +4,11 @@ const template = document.createElement("template");
 template.innerHTML = `
   <style>
 		:host {
-			width: 100%;
+      width: 100%;
+      margin-top: 40px;
     }
     :host .carousel {
       width: 100%;
-      max-width: 600px;
       margin: 0 auto;
       overflow: hidden;
     }
@@ -16,11 +16,15 @@ template.innerHTML = `
       width: 100%;
       white-space: nowrap;
       transition: all .3s ease;
-	}
-	:host .slide {
-		padding: 8px;
-		display: inline-block;
-	}
+      position: relative;
+    }
+    :host .slider.loading {
+      filter: blur(3px);
+    }
+    :host .slide {
+      padding: 8px;
+      display: inline-block;
+    }
   </style>
   <div class="carousel">
     <div class="slider"></div>
@@ -48,35 +52,28 @@ class Carousel extends HTMLElement {
     return this.items;
   }
   set slides(slides: Array) {
-    // let newItems = slides;
-    // if (this.slides.length) {
-    //   newItems = slides.filter((slide) => {
-    //     return this.slides.find((item) => item.key !== slide.key) !== undefined;
-    //   });
-    //   this.addSlides(newItems);
-    // } else {
-    //   this.stopAutoLooping();
-    //   this.addSlides(slides);
-    //   this.activeSlideIndex = 0;
-    //   this.startAutoLooping();
-    // }
-    // this.stopAutoLooping();
     this.addSlides(slides);
-    // this.startAutoLooping();
     this.items = slides;
   }
   get activeSlideIndex() {
     return this.activeIndex;
   }
   set activeSlideIndex(index: number) {
-    this.stopAutoLooping();
     this.activeIndex = index;
     const slides = this.slider.children[0];
     if (this.slider && slides) {
       const slideWidth = slides.offsetWidth;
       this.slider.setAttribute("style", `transform: translateX(${-slideWidth * (index - 1)}px);`);
     }
-    this.startAutoLooping();
+  }
+  set loadingNew(loading: bool) {
+    if (loading) {
+      this.stopAutoLooping();
+      this.slider.classList.add("loading");
+    } else {
+      this.slider.classList.remove("loading");
+      this.startAutoLooping();
+    }
   }
 
   addSlides = (slides: Array) => {

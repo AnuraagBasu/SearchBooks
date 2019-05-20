@@ -9,6 +9,10 @@ template.innerHTML = `
 			background-position: center;
 			background-repeat: no-repeat;
 			background-color: #eee;
+			-webkit-box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.3);
+			-moz-box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.3);
+			box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.3);
+			border-radius: 4px;
 		}
 	</style>
 `;

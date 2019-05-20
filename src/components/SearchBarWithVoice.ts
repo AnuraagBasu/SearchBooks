@@ -11,17 +11,19 @@ template.innerHTML = `
 			width: 100%;
 		}
 		:host > input {
-			width: 250px;
+			width: 500px;
 			border: none;
-			border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-			outline: none;
-			padding: 4px 8px;
-			font-size: 20px;
-			color: #4a4a4a;
+			border-bottom: 4px solid rgba(165, 127, 96, 0.4);
+			outline: none !important;
+			padding: 8px 52px 8px 12px;
+			font-size: 32px;
+			font-weight: bold;
+			color: #A57F60;
 			transition: all .3s ease;
+			background-color: transparent;
 		}
 		:host > input:focus {
-			border-bottom: 2px solid rgba(0, 0 ,0, 0.7);
+			border-bottom: 4px solid rgba(165, 127, 96, 0.8);
 		}
 	</style>
 `;

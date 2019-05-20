@@ -12,15 +12,10 @@ template.innerHTML = `
 			text-align: center;
 			width: 100%;
 			height: 100%;
-		}
-		:host > input{
-			display: block;
-			width: 200px;
-			padding: 8px 12px;
-			border: 1px solid #000;
-			outline: none;
-			font-size: 20px;
-			margin: 0 auto 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
 		}
 	</style>
 `;
@@ -51,10 +46,12 @@ class SearchCarousel extends HTMLElement {
   }
 
   requestItems = (query: string) => {
+    this.carousel.loadingNew = true;
     searchBooks(query).then((resp) => {
       const allSlides = resp.docs || [];
       this.carousel.slides = allSlides;
       this.carousel.activeSlideIndex = 0;
+      this.carousel.loadingNew = false;
     });
   };
   fetchNextPageItems = () => {
