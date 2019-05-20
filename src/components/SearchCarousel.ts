@@ -29,13 +29,13 @@ class SearchCarousel extends HTMLElement {
 
     this.searchBar = new SearchBarWithVoice();
     shadowRoot.appendChild(this.searchBar);
-    this.searchBar.value = "Watson";
+    this.searchBar.value = "Sherlock Holmes";
     this.carousel = new Carousel();
     shadowRoot.appendChild(this.carousel);
 
     this.pagination = {
-      count: 0,
-      next: null
+      total: 0,
+      soFar: 0
     };
   }
 
@@ -47,7 +47,11 @@ class SearchCarousel extends HTMLElement {
 
   requestItems = (query: string) => {
     this.carousel.loadingNew = true;
-    searchBooks(query).then((resp) => {
+    searchBooks(query).then((resp: object) => {
+      this.pagination = {
+        total: resp.numFound,
+        soFar: 10
+      };
       const allSlides = resp.docs || [];
       this.carousel.slides = allSlides;
       this.carousel.activeSlideIndex = 0;
@@ -55,9 +59,16 @@ class SearchCarousel extends HTMLElement {
     });
   };
   fetchNextPageItems = () => {
-    searchBooks(this.searchBar.value).then((resp) => {
-      this.carousel.slides = [...this.carousel.slides, ...resp.docs];
-    });
+    const { total, soFar } = this.pagination;
+    if (soFar !== total) {
+      searchBooks(this.searchBar.value, soFar / 10 + 1).then((resp) => {
+        this.carousel.slides = [...this.carousel.slides, ...resp.docs];
+        this.pagination = {
+          total: resp.numFound,
+          soFar: this.carousel.slides.length
+        };
+      });
+    }
   };
 }
 

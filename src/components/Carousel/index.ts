@@ -124,7 +124,7 @@ class Carousel extends HTMLElement {
         let nextSlideIndex = this.activeSlideIndex + 1;
         this.activeSlideIndex = nextSlideIndex === this.slides.length ? 0 : nextSlideIndex;
         const slides = this.slider.children;
-        if (nextSlideIndex > slides.length - 3) {
+        if (nextSlideIndex > slides.length - 5) {
           this.dispatchEvent(new CustomEvent("onFetchMore"));
         }
       }

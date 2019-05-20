@@ -1,12 +1,12 @@
 import { RECOGNISER_TEXT } from "./constants";
 
-export const searchBooks = (query: string = "") => {
+export const searchBooks = (query: string = "", page: number = 1) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.onload = () => {
       resolve(JSON.parse(request.response));
     };
-    request.open("GET", `https://openlibrary.org/search.json?q=${query}&limit=10`);
+    request.open("GET", `https://openlibrary.org/search.json?q=${query}&limit=10&page=${page}`);
     request.send();
   });
 };
