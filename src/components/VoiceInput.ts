@@ -3,7 +3,7 @@ import { initialiseSpeechRecognition, listenToSpeech } from "../utils";
 const template = document.createElement("template");
 template.innerHTML = `
 	<style>
-		:host > .voiceInputBtn{
+		:host > .voiceInputBtn {
 			width: 40px;
 			height: 40px;
 			border-radius: 50%;
@@ -14,6 +14,23 @@ template.innerHTML = `
 			transition: all .3s ease;
 			display: flex;
 			transform: translateX(-40px);
+			position: relative;
+		}
+		:host > .voiceInputBtn:hover:after {
+			content: "Start by saying 'search for...'";
+			width: 100px;
+			position: absolute;
+			top: -30px;
+			left: 30px;
+			background-color: #fff;
+			color: #4a4a4a;
+			display: flex;
+			align-items: center;
+			padding: 4px;
+			border-radius: 4px;
+			-webkit-box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.2);
+			-moz-box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.2);
+			box-shadow: 0px 0px 5px 1px rgba(165,127,96,0.2);
 		}
 		:host > .voiceInputBtn.listening{
 			background-color: #ef9a9a;
